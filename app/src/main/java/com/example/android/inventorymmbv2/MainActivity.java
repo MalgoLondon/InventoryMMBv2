@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         // Find the ListView which will be populated with the phone data
-        ListView phoneListView = (ListView) findViewById(R.id.list);
+        ListView phoneListView = findViewById(R.id.list);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);

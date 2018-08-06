@@ -127,7 +127,9 @@ public class EditorActivity extends AppCompatActivity implements
      */
 
     public void increment(View view) {
+
         int stock = Integer.valueOf(mQuantityEditText.getText().toString());
+
         if (stock>10000)
         {
             Toast.makeText(this, "You can't have stock more than 10000", Toast.LENGTH_SHORT).show();
@@ -203,6 +205,7 @@ public class EditorActivity extends AppCompatActivity implements
             }
         });
     }
+
 
     /**
      * Get user input from editor and save phone into database.
