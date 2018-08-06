@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are the options displayed in the gender drop-down Spinner -->
+    <string-array name="array_supplier_options">
+        <item>@string/supplier_unknown</item>
+        <item>@string/supplier_apple</item>
+        <item>@string/supplier_sony</item>
+        <item>@string/supplier_samsung</item>
+        <item>@string/supplier_huawei</item>
+
+    </string-array>
+
+</resources>
