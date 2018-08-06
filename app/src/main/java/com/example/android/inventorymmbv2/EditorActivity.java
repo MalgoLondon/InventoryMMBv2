@@ -53,6 +53,7 @@ public class EditorActivity extends AppCompatActivity implements
 
     /** EditText field to enter the Supplier */
     private Spinner mSupplierSpinner;
+    private int stock;
 
     /**
      * The possible valid values are in the PhoneContract.java file.
@@ -127,27 +128,33 @@ public class EditorActivity extends AppCompatActivity implements
      */
 
     public void increment(View view) {
-
-        int stock = Integer.valueOf(mQuantityEditText.getText().toString());
+        if (TextUtils.isEmpty(mQuantityEditText.getText().toString())){
+            stock=0;
+        }else{
+        stock = Integer.valueOf(mQuantityEditText.getText().toString());
 
         if (stock>10000)
         {
             Toast.makeText(this, "You can't have stock more than 10000", Toast.LENGTH_SHORT).show();
             return;}
 
-        stock = stock + 1;
+        stock = stock + 1;}
         displayQuantity(stock);}
+
     /**
      * This method is called when the minus button is clicked.
      */
 
     public void decrement(View view) {
-        int stock = Integer.valueOf(mQuantityEditText.getText().toString());
-        if (stock<0){
+        if (TextUtils.isEmpty(mQuantityEditText.getText().toString())){
+           stock=0;
+        }else{
+        stock = Integer.valueOf(mQuantityEditText.getText().toString());
+        if (stock<1){
             Toast.makeText(this, "You can't have stock less than 0", Toast.LENGTH_SHORT).show();
             return;}
 
-        stock = stock - 1;
+        stock = stock - 1;}
         displayQuantity(stock);
     }
 
