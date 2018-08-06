@@ -91,16 +91,23 @@ public class MainActivity extends AppCompatActivity implements
      * This method is called when the cart button is clicked.
      */
 
-    public void decrementCart(View view) {
-        TextView mStockDisplayView =(TextView) findViewById(R.id.in_stock_tv);
-        int stock = Integer.valueOf(mStockDisplayView.getText().toString());
-        if (stock==0){
-            Toast.makeText(this, "Sorry, it looks like we are out of stock. Please try later", Toast.LENGTH_SHORT).show();
-            return;}
-
-        stock = stock - 1;
-        displayQuantityAfterBuy(stock);
-    }
+//    public void decrementCart(View view) {
+//        TextView mStockDisplayView =(TextView) findViewById(R.id.in_stock_tv);
+//        int stock = Integer.valueOf(mStockDisplayView.getText().toString());
+//        if (stock==0){
+//            Toast.makeText(this, "Sorry, it looks like we are out of stock. Please try later", Toast.LENGTH_SHORT).show();
+//            return;}
+//
+//        stock = stock - 1;
+//
+//        // Examine the intent that was used to launch this activity,
+//        // in order to figure out if we're creating a new pet or editing an existing one.
+//        Intent intent = getIntent();
+//        mCurrentPhoneUri = intent.getData();
+//
+//        int rowsAffected = getContentResolver().update(mCurrentPhoneUri, values, null, null);
+//
+//    }
 
     /**
      * Helper method to insert hardcoded pet data into the database. For debugging purposes only.

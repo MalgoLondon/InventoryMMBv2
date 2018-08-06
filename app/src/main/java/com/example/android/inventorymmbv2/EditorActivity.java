@@ -36,7 +36,7 @@ public class EditorActivity extends AppCompatActivity implements
     /** Identifier for the pet data loader */
     private static final int EXISTING_PHONE_LOADER = 0;
 
-    /** Content URI for the existing pet (null if it's a new phone) */
+    /** Content URI for the existing phone (null if it's a new phone) */
     private Uri mCurrentPhoneUri;
 
     /** EditText field to enter the phone name */
@@ -51,7 +51,7 @@ public class EditorActivity extends AppCompatActivity implements
     /** EditText field to enter the stock quantity */
     private EditText mQuantityEditText;
 
-    /** EditText field to enter the pet's gender */
+    /** EditText field to enter the Supplier */
     private Spinner mSupplierSpinner;
 
     /**

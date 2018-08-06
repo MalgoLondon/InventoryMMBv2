@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants" >
 
     <LinearLayout
         android:layout_width="0dp"
@@ -50,6 +51,6 @@
     android:src="@drawable/ic_cart"
     android:layout_gravity="center"
     android:background="#FFFFFF"
-    android:onClick="decrementCart"
+    android:focusable="false"
     />
 </LinearLayout>
