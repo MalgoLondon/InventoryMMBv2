@@ -16,7 +16,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="Model"
+            android:text="@string/model"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -30,7 +30,7 @@
             <!-- Name field -->
             <EditText
                 android:id="@+id/edit_phone_name"
-                android:hint="Smartphone model"
+                android:hint="@string/smartphone_model_hint"
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
 
@@ -45,7 +45,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="Price"
+            android:text="@string/price_label"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -59,8 +59,8 @@
             <!-- Price field -->
             <EditText
                 android:id="@+id/edit_price"
-                android:hint="Smartphone price in €"
-                android:inputType="textCapWords"
+                android:hint="@string/price_hint"
+                android:inputType="number"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
@@ -74,7 +74,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="Supplier"
+            android:text="@string/supplier_label"
             style="@style/CategoryStyle" />
 
         <!-- Input field -->
@@ -90,8 +90,8 @@
                 android:layout_height="48dp"
                 android:layout_width="wrap_content"
                 android:paddingRight="16dp"
-                android:spinnerMode="dropdown"
-                />
+                android:spinnerMode="dropdown" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -104,7 +104,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="Supplier Phone"
+            android:text="@string/supplier_phone"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -115,23 +115,20 @@
             android:paddingLeft="4dp">
 
             <!-- Supplier Phone Field -->
-
             <ImageButton
                 android:id="@+id/phone_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_phone"
                 android:layout_centerVertical="true"
-                android:onClick="call"
-                />
+                android:onClick="call" />
+
             <EditText
                 android:id="@+id/edit_number"
-                android:hint="Supplier Phone #"
+                android:layout_toRightOf="@id/phone_button"
                 android:inputType="number"
                 style="@style/EditorFieldStyle"
-                android:layout_toRightOf="@id/phone_button"
-
-               />
+                android:hint="@string/supplier_phone_number_hint" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -145,7 +142,7 @@
 
         <!-- Label -->
         <TextView
-            android:text="Quantity"
+            android:text="@string/quantity_label"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -160,13 +157,12 @@
                 android:id="@+id/minus_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:text="-"
                 android:onClick="decrement"
-                />
+                android:text="@string/minus_button" />
 
             <EditText
                 android:id="@+id/edit_quantity"
-                android:hint="Quantity"
+                android:hint="@string/quantity_hint"
                 android:inputType="number"
                 style="@style/EditorFieldStyle"
                 android:layout_width="wrap_content"
@@ -176,11 +172,9 @@
                 android:id="@+id/plus_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:text="+"
-                android:layout_toRightOf="@+id/edit_quantity"
                 android:onClick="increment"
-
-                />
+                android:layout_toRightOf="@+id/edit_quantity"
+                android:text="@string/plus_button" />
 
         </LinearLayout>
     </LinearLayout>

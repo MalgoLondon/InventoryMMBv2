@@ -1,6 +1,5 @@
 package com.example.android.inventorymmbv2;
 
-import android.view.View;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -28,12 +27,14 @@ import android.widget.Toast;
 import com.example.android.inventorymmbv2.PhoneContract.PhoneEntry;
 
 /**
- * Allows user to create a new pet or edit an existing one.
+ * Allows user to create a new phone or edit an existing one.
  */
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    /** Identifier for the pet data loader */
+    /**
+     * Identifier for the phone data loader
+     */
     private static final int EXISTING_PHONE_LOADER = 0;
 
     /** Content URI for the existing phone (null if it's a new phone) */
@@ -81,7 +82,7 @@ public class EditorActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_editor);
 
         // Examine the intent that was used to launch this activity,
-        // in order to figure out if we're creating a new pet or editing an existing one.
+        // in order to figure out if we're creating a new phone or editing an existing one.
         Intent intent = getIntent();
         mCurrentPhoneUri = intent.getData();
 
@@ -104,11 +105,11 @@ public class EditorActivity extends AppCompatActivity implements
         }
 
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_phone_name);
-        mPriceEditText = (EditText) findViewById(R.id.edit_price);
-        mNumberEditText = (EditText) findViewById(R.id.edit_number);
-        mQuantityEditText = (EditText) findViewById(R.id.edit_quantity);
-        mSupplierSpinner = (Spinner) findViewById(R.id.spinner_supplier);
+        mNameEditText = findViewById(R.id.edit_phone_name);
+        mPriceEditText = findViewById(R.id.edit_price);
+        mNumberEditText = findViewById(R.id.edit_number);
+        mQuantityEditText = findViewById(R.id.edit_quantity);
+        mSupplierSpinner = findViewById(R.id.spinner_supplier);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -225,7 +226,7 @@ public class EditorActivity extends AppCompatActivity implements
         String numberString = mNumberEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
 
-        // Check if this is supposed to be a new pet
+        // Check if this is supposed to be a new phone
         // and check if all the fields in the editor are blank
         if (mCurrentPhoneUri == null &&
                 TextUtils.isEmpty(nameString) && TextUtils.isEmpty(priceString) &&
@@ -236,22 +237,15 @@ public class EditorActivity extends AppCompatActivity implements
         }
 
         // Create a ContentValues object where column names are the keys,
-        // and pet attributes from the editor are the values.
+        // and phone attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(PhoneEntry.COLUMN_PHONE_NAME, nameString);
         values.put(PhoneEntry.COLUMN_PRICE, priceString);
         values.put(PhoneEntry.COLUMN_SUPPLIER, mSupplier);
         values.put(PhoneEntry.COLUMN_SUPPLIER_NUMBER, numberString);
         values.put(PhoneEntry.COLUMN_QUANTITY, quantityString);
-        // If the weight is not provided by the user, don't try to parse the string into an
-        // integer value. Use 0 by default.
-        //int weight = 0;
-        //if (!TextUtils.isEmpty(weightString)) {
-          //  weight = Integer.parseInt(weightString);
-        //}
-        //values.put(PhoneEntry.COLUMN_PET_WEIGHT, weight);
 
-        // Determine if this is a new or existing pet by checking if mCurrentPhoneUri is null or not
+        // Determine if this is a new or existing phone by checking if mCurrentPhoneUri is null or not
         if (mCurrentPhoneUri == null) {
             // This is a NEW phone, so insert a new phone into the provider,
             // returning the content URI for the new phone.
@@ -268,9 +262,9 @@ public class EditorActivity extends AppCompatActivity implements
                         Toast.LENGTH_SHORT).show();
             }
         } else {
-            // Otherwise this is an EXISTING pet, so update the pet with content URI: mCurrentPetUri
+            // Otherwise this is an EXISTING phone, so update the phone with content URI: mCurrentPetUri
             // and pass in the new ContentValues. Pass in null for the selection and selection args
-            // because mCurrentPetUri will already identify the correct row in the database that
+            // because mCurrentPhoneUri will already identify the correct row in the database that
             // we want to modify.
             int rowsAffected = getContentResolver().update(mCurrentPhoneUri, values, null, null);
 
@@ -302,7 +296,7 @@ public class EditorActivity extends AppCompatActivity implements
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        // If this is a new pet, hide the "Delete" menu item.
+        // If this is a new phone, hide the "Delete" menu item.
         if (mCurrentPhoneUri == null) {
             MenuItem menuItem = menu.findItem(R.id.action_delete);
             menuItem.setVisible(false);
@@ -316,7 +310,7 @@ public class EditorActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                // Save pet to database
+                // Save phone to database
                 savePhone();
                 // Exit activity
                 finish();
@@ -328,7 +322,7 @@ public class EditorActivity extends AppCompatActivity implements
                 return true;
             // Respond to a click on the "Up" arrow button in the app bar
             case android.R.id.home:
-                // If the pet hasn't changed, continue with navigating up to parent activity
+                // If the phone hasn't changed, continue with navigating up to parent activity
                 // which is the {@link CatalogActivity}.
                 if (!mPhoneHasChanged) {
                     NavUtils.navigateUpFromSameTask(EditorActivity.this);
@@ -359,7 +353,7 @@ public class EditorActivity extends AppCompatActivity implements
      */
     @Override
     public void onBackPressed() {
-        // If the pet hasn't changed, continue with handling back button press
+        // If the phone hasn't changed, continue with handling back button press
         if (!mPhoneHasChanged) {
             super.onBackPressed();
             return;
@@ -382,8 +376,8 @@ public class EditorActivity extends AppCompatActivity implements
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        // Since the editor shows all pet attributes, define a projection that contains
-        // all columns from the pet table
+        // Since the editor shows all phone attributes, define a projection that contains
+        // all columns from the phones table
         String[] projection = {
                 PhoneEntry._ID,
                 PhoneEntry.COLUMN_PHONE_NAME,
@@ -474,7 +468,7 @@ public class EditorActivity extends AppCompatActivity implements
     private void showUnsavedChangesDialog(
             DialogInterface.OnClickListener discardButtonClickListener) {
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the positive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.unsaved_changes_dialog_msg);
         builder.setPositiveButton(R.string.discard, discardButtonClickListener);
@@ -498,7 +492,7 @@ public class EditorActivity extends AppCompatActivity implements
      */
     private void showDeleteConfirmationDialog() {
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the positive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
@@ -526,11 +520,11 @@ public class EditorActivity extends AppCompatActivity implements
      * Perform the deletion of the phone in the database.
      */
     private void deletePhone() {
-        // Only perform the delete if this is an existing pet.
+        // Only perform the delete if this is an existing phone.
         if (mCurrentPhoneUri != null) {
             // Call the ContentResolver to delete the pet at the given content URI.
-            // Pass in null for the selection and selection args because the mCurrentPetUri
-            // content URI already identifies the pet that we want.
+            // Pass in null for the selection and selection args because the mCurrentPhoneUri
+            // content URI already identifies the phone that we want.
             int rowsDeleted = getContentResolver().delete(mCurrentPhoneUri, null, null);
 
             // Show a toast message depending on whether or not the delete was successful.
@@ -553,7 +547,7 @@ public class EditorActivity extends AppCompatActivity implements
      * This method displays the given quantity value on the screen after incrementing or decrementing.
      */
     private void displayQuantity(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.edit_quantity);
+        TextView quantityTextView = findViewById(R.id.edit_quantity);
         quantityTextView.setText("" + number);
     }
 }

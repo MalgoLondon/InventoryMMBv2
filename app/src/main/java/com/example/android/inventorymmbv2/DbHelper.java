@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.android.inventorymmbv2.PhoneContract.PhoneEntry;
 
 /**
- * Database helper for Pets app. Manages database creation and version management.
+ * Database helper for Smartphone Inventory app. Manages database creation and version management.
  */
 public class DbHelper extends SQLiteOpenHelper {
 

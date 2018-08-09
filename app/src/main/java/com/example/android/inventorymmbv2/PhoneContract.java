@@ -87,7 +87,7 @@ public final class PhoneContract {
 
 
         /**
-         * Possible values for the gender of the pet.
+         * Possible values for the supplier of the phone.
          */
         public static final int SUPPLIER_UNKNOWN = 0;
         public static final int SUPPLIER_APPLE = 1;
@@ -100,10 +100,7 @@ public final class PhoneContract {
          * or {@link #SUPPLIER_SONY} or {@link #SUPPLIER_SAMSUNG}or {@link #SUPPLIER_HUAWEI}.
          */
         public static boolean isValidSupplier(int supplier) {
-            if (supplier == SUPPLIER_UNKNOWN || supplier == SUPPLIER_APPLE || supplier == SUPPLIER_SONY || supplier == SUPPLIER_HUAWEI || supplier == SUPPLIER_SAMSUNG) {
-                return true;
-            }
-            return false;
+            return supplier == SUPPLIER_UNKNOWN || supplier == SUPPLIER_APPLE || supplier == SUPPLIER_SONY || supplier == SUPPLIER_HUAWEI || supplier == SUPPLIER_SAMSUNG;
         }
     }
 

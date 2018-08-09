@@ -16,20 +16,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.inventorymmbv2.PhoneContract.PhoneEntry;
 
 /**
- * Displays list of pets that were entered and stored in the app.
+ * Displays list of phones that were entered and stored in the app.
  */
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    /** Identifier for the pet data loader */
+    /**
+     * Identifier for the phone data loader
+     */
     private static final int PHONE_LOADER = 0;
 
     /** Adapter for the ListView */
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         // Setup FAB to open EditorActivity
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements
         View emptyView = findViewById(R.id.empty_view);
         phoneListView.setEmptyView(emptyView);
 
-        // Setup an Adapter to create a list item for each row of pet data in the Cursor.
-        // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        // Setup an Adapter to create a list item for each row of phone data in the Cursor.
+        // There is no phone data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new PhoneCursorAdapter(this, null);
         phoneListView.setAdapter(mCursorAdapter);
 
@@ -72,8 +72,7 @@ public class MainActivity extends AppCompatActivity implements
                 // Form the content URI that represents the specific phone that was clicked on,
                 // by appending the "id" (passed as input to this method) onto the
                 // {@link PhoneEntry#CONTENT_URI}.
-                // For example, the URI would be "content://com.example.android.pets/pets/2"
-                // if the pet with ID 2 was clicked on.
+
                 Uri currentPhoneUri = ContentUris.withAppendedId(PhoneEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
@@ -88,33 +87,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * This method is called when the cart button is clicked.
-     */
-
-//    public void decrementCart(View view) {
-//        TextView mStockDisplayView =(TextView) findViewById(R.id.in_stock_tv);
-//        int stock = Integer.valueOf(mStockDisplayView.getText().toString());
-//        if (stock==0){
-//            Toast.makeText(this, "Sorry, it looks like we are out of stock. Please try later", Toast.LENGTH_SHORT).show();
-//            return;}
-//
-//        stock = stock - 1;
-//
-//        // Examine the intent that was used to launch this activity,
-//        // in order to figure out if we're creating a new pet or editing an existing one.
-//        Intent intent = getIntent();
-//        mCurrentPhoneUri = intent.getData();
-//
-//        int rowsAffected = getContentResolver().update(mCurrentPhoneUri, values, null, null);
-//
-//    }
-
-    /**
-     * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
+     * Helper method to insert hardcoded phone data into the database. For debugging purposes only.
      */
     private void insertPhone() {
         // Create a ContentValues object where column names are the keys,
-        // and Toto's pet attributes are the values.
+        // and attributes are the values.
         ContentValues values = new ContentValues();
         values.put(PhoneEntry.COLUMN_PHONE_NAME, "Xperia XZ2");
         values.put(PhoneEntry.COLUMN_PRICE, 500);
@@ -125,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements
         // Insert a new row for Xperia XZ2 into the provider using the ContentResolver.
         // Use the {@link PhoneEntry#CONTENT_URI} to indicate that we want to insert
         // into the phone database table.
-        // Receive the new content URI that will allow us to access Toto's data in the future.
+        // Receive the new content URI that will allow us to access the data in the future.
        Uri newUri = getContentResolver().insert(PhoneEntry.CONTENT_URI, values);
    }
 
@@ -194,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements
      * This method displays the given quantity value on the screen after incrementing or decrementing.
      */
     private void displayQuantityAfterBuy(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.in_stock_tv);
+        TextView quantityTextView = findViewById(R.id.in_stock_tv);
         quantityTextView.setText("" + number);
     }
 }

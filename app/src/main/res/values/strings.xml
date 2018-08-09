@@ -1,72 +1,70 @@
 <resources>
     <string name="app_name">Smartphone Inventory</string>
 
+    <!-- Supplier Names for the spinner-->
     <string name="supplier_unknown">Unknown</string>
     <string name="supplier_apple">Apple</string>
     <string name="supplier_sony">Sony</string>
     <string name="supplier_samsung">Samsung</string>
     <string name="supplier_huawei">Huawei</string>
+
+    <!-- Top bar titles-->
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
     <string name="action_insert_dummy_data">dummydata</string>
     <string name="action_delete_all_entries">deleteall</string>
 
-
-
-
-    <!-- Title for the activity to add a new phone [CHAR LIMIT=20] -->
+    <!-- Title for the activity to add a new phone/edit existing one [CHAR LIMIT=20] -->
     <string name="editor_activity_title_new_phone">Add a Smartphone</string>
     <string name="editor_activity_title_edit_phone">Edit Smartphone</string>
-
 
     <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="category_overview">Overview</string>
 
-    <!-- Label for gender information in the editor [CHAR LIMIT=30] -->
-    <string name="category_gender">Gender</string>
-
-    <!-- Label for measurement information in the editor [CHAR LIMIT=30] -->
-    <string name="category_measurement">Measurement</string>
-
-    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
-    <string name="hint_pet_name">Name</string>
-
-    <!-- Text hint for breed field in the editor [CHAR LIMIT=30] -->
-    <string name="hint_pet_breed">Breed</string>
-
-    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
-    <string name="hint_pet_weight">Weight</string>
-
-
-
+    <!-- Dialog messages showing if the phone update was successful or not -->
     <string name="editor_insert_phone_failed">Insert phone failed</string>
     <string name="editor_insert_phone_successful">Insert phone successful</string>
-
     <string name="editor_update_phone_failed">Update phone failed</string>
     <string name="editor_update_phone_successful">Update phone successful</string>
+
     <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
     <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
 
     <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
     <string name="discard">Discard</string>
 
-    <!-- Dialog button text for the option to keep editing the current pet [CHAR LIMIT=20] -->
+    <!-- Dialog button text for the option to keep editing the current phone [CHAR LIMIT=20] -->
     <string name="keep_editing">Keep Editing</string>
-    <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
+    <!-- Toast message in editor when current phone was successfully deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_phone_successful">Smartphone deleted</string>
 
-    <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
+    <!-- Toast message in editor when current phone has failed to be deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_phone_failed">Error with deleting smartphone</string>
 
-    <!-- Dialog message to ask the user to confirm deleting the current pet [CHAR LIMIT=NONE] -->
+    <!-- Dialog message to ask the user to confirm deleting the current phone[CHAR LIMIT=NONE] -->
     <string name="delete_dialog_msg">Delete this smartphone?</string>
 
-    <!-- Dialog button text for the option to confirm deleting the current pet [CHAR LIMIT=20] -->
+    <!-- Dialog button text for the option to confirm deleting the current phone[CHAR LIMIT=20] -->
     <string name="delete">Delete</string>
 
-    <!-- Dialog button text for the option to cancel deletion of the current pet [CHAR LIMIT=20] -->
+    <!-- Dialog button text for the option to cancel deletion of the current phone [CHAR LIMIT=20] -->
     <string name="cancel">Cancel</string>
 
+    <!-- Label for Stock text view -->
+    <string name="in_stock">In stock: </string>
+    <string name="price_textview">Price:</string>
+    <string name="prod_name_text_view">Product Name</string>
+    <string name="model">Model</string>
+    <string name="smartphone_model_hint">Smartphone model</string>
+    <string name="supplier_phone">Supplier Phone</string>
+    <string name="quantity_hint">Quantity</string>
+    <string name="supplier_phone_number_hint">Supplier Phone #</string>
+    <string name="price_hint">Smartphone price in €</string>
+    <string name="price_label">Price</string>
+    <string name="quantity_label">Quantity</string>
+    <string name="minus_button">-</string>
+    <string name="plus_button">+</string>
+    <string name="supplier_label">Supplier</string>
 
 
 </resources>

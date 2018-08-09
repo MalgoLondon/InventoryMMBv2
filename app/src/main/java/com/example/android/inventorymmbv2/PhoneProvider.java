@@ -1,6 +1,5 @@
 package com.example.android.inventorymmbv2;
 
-
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -12,9 +11,8 @@ import android.util.Log;
 
 import com.example.android.inventorymmbv2.PhoneContract.PhoneEntry;
 
-
 /**
- * {@link ContentProvider} for Pets app.
+ * {@link ContentProvider} for Phone inventory app.
  */
 public class PhoneProvider extends ContentProvider {
 
@@ -29,7 +27,7 @@ public class PhoneProvider extends ContentProvider {
     private static final int PHONES = 100;
 
     /**
-     * URI matcher code for the content URI for a single pet in the pets table
+     * URI matcher code for the content URI for a single phone in the phone table
      */
     private static final int PHONE_ID = 101;
     /**
@@ -44,7 +42,6 @@ public class PhoneProvider extends ContentProvider {
         // The calls to addURI() go here, for all of the content URI patterns that the provider
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
-
         sUriMatcher.addURI(PhoneContract.CONTENT_AUTHORITY, PhoneContract.PATH_PHONES, PHONES);
         sUriMatcher.addURI(PhoneContract.CONTENT_AUTHORITY, PhoneContract.PATH_PHONES + "/#", PHONE_ID);
     }
@@ -60,7 +57,6 @@ public class PhoneProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         mDbHelper = new DbHelper(getContext());
-
         return true;
     }
 
@@ -80,15 +76,15 @@ public class PhoneProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match) {
             case PHONES:
-                // For the PETS code, query the pets table directly with the given
+                // For the PHONES code, query the phones table directly with the given
                 // projection, selection, selection arguments, and sort order. The cursor
-                // could contain multiple rows of the pets table.
+                // could contain multiple rows of the phone table.
                 cursor = database.query(PhoneEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case PHONE_ID:
-                // For the PET_ID code, extract out the ID from the URI.
-                // For an example URI such as "content://com.example.android.pets/pets/3",
+                // For the PHONE_ID code, extract out the ID from the URI.
+                // For an example URI such as "content://com.example.android.inventorymmbv2/phones/3",
                 // the selection will be "_id=?" and the selection argument will be a
                 // String array containing the actual ID of 3 in this case.
                 //
@@ -98,7 +94,7 @@ public class PhoneProvider extends ContentProvider {
                 selection = PhoneEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
 
-                // This will perform a query on the pets table where the _id equals 3 to return a
+                // This will perform a query on the phones table where the _id equals 3 to return a
                 // Cursor containing that row of the table.
                 cursor = database.query(PhoneContract.PhoneEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
@@ -129,9 +125,8 @@ public class PhoneProvider extends ContentProvider {
         }
     }
 
-
     /**
-     * Insert a pet into the database with the given content values. Return the new content URI
+     * Insert a phone into the database with the given content values. Return the new content URI
      * for that specific row in the database.
      */
     private Uri insertPhone(Uri uri, ContentValues values) {
@@ -147,7 +142,7 @@ public class PhoneProvider extends ContentProvider {
             throw new IllegalArgumentException("Phone requires valid supplier");
         }
 
-        // Check that the Supplier phone number is not null
+        // Check that the supplier phone number is not null
         String number = values.getAsString(PhoneEntry.COLUMN_SUPPLIER_NUMBER);
         if (number == null) {
             throw new IllegalArgumentException("Phone number of supplier is required");
@@ -176,13 +171,12 @@ public class PhoneProvider extends ContentProvider {
             return null;
         }
 
-        // Notify all listeners that the data has changed for the pet content URI
+        // Notify all listeners that the data has changed for the phones content URI
         getContext().getContentResolver().notifyChange(uri, null);
 
         // Return the new URI with the ID (of the newly inserted row) appended at the end
         return ContentUris.withAppendedId(uri, id);
     }
-
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection,
@@ -192,7 +186,7 @@ public class PhoneProvider extends ContentProvider {
             case PHONES:
                 return updatePhone(uri, contentValues, selection, selectionArgs);
             case PHONE_ID:
-                // For the PET_ID code, extract out the ID from the URI,
+                // For the PHONE_ID code, extract out the ID from the URI,
                 // so we know which row to update. Selection will be "_id=?" and selection
                 // arguments will be a String array containing the actual ID.
                 selection = PhoneEntry._ID + "=?";
@@ -204,8 +198,8 @@ public class PhoneProvider extends ContentProvider {
     }
 
     /**
-     * Update pets in the database with the given content values. Apply the changes to the rows
-     * specified in the selection and selection arguments (which could be 0 or 1 or more pets).
+     * Update phones in the database with the given content values. Apply the changes to the rows
+     * specified in the selection and selection arguments (which could be 0 or 1 or more phones).
      * Return the number of rows that were successfully updated.
      */
     private int updatePhone(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
@@ -255,12 +249,10 @@ public class PhoneProvider extends ContentProvider {
                 throw new IllegalArgumentException("Stock number needs to be valid");
             }
         }
-
             // If there are no values to update, then don't try to update the database
             if (values.size() == 0) {
                 return 0;
             }
-
             // Otherwise, get writeable database to update the data
             SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
@@ -272,7 +264,6 @@ public class PhoneProvider extends ContentProvider {
             if (rowsUpdated != 0) {
                 getContext().getContentResolver().notifyChange(uri, null);
             }
-
             // Return the number of rows updated
             return rowsUpdated;
         }
@@ -284,7 +275,6 @@ public class PhoneProvider extends ContentProvider {
 
             // Track the number of rows that were deleted
             int rowsDeleted;
-
             final int match = sUriMatcher.match(uri);
             switch (match) {
                 case PHONES:
